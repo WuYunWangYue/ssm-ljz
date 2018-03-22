@@ -1,5 +1,7 @@
 package com.ljz.testmybatis;
 
+import com.ljz.controller.UserController;
+import com.ljz.controller.vo.UserRequestVO;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +20,8 @@ public class TestMyBatis {
     //  private ApplicationContext ac = null;
     @Autowired
     private IUserService userService = null;
+    @Autowired
+    private UserController userController;
 
 //  @Before  
 //  public void before() {  
@@ -31,6 +35,17 @@ public class TestMyBatis {
         // System.out.println(user.getUserName());  
         // logger.info("值："+user.getUserName());  
         logger.info(JSON.toJSONString(user));
+    }
+
+    @Test
+    public void test2() {
+        UserRequestVO vo = new UserRequestVO();
+        vo.setUserName("ljz");
+        vo.setPassword("123456");
+        vo.setAge(29);
+        userController.create(vo);
+        System.out.println("结果是: " + userController.create(vo));
+        System.out.println("结果是: " + userController.getUserInJson2("5"));
     }
 
 }
