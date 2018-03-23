@@ -2,23 +2,23 @@ package com.ljz.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ljz.common.BaseResponse;
+import com.ljz.controller.vo.UserRequestVO;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ljz.model.User;
@@ -33,9 +33,21 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @RequestMapping(value = "/create")
+    public String create(@RequestBody UserRequestVO reqVO){
+        List<User> users = userService.getUserByUserName(reqVO.getUserName());
+        if(users.size() > 0) {
+            return "error";
+        }
+        User user = new User();
+        BeanUtils.copyProperties(reqVO, user);
+        userService.create(user);
+        return "success";
+    }
+
     // /user/test?id=1
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String create() {
+    public String test() {
         User user = new User();
         user.setAge(11);
         user.setPassword("123");
@@ -85,7 +97,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/jsonType/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserInJson2(@PathVariable String id, Map<String, Object> model) {
+//    public ResponseEntity<User> getUserInJson2(@PathVariable String id, Map<String, Object> model) {
+    public ResponseEntity<User> getUserInJson2(@PathVariable String id) {
         int userId = Integer.parseInt(id);
         System.out.println("userId:" + userId);
         User user = this.userService.getUserById(userId);
@@ -105,6 +118,6 @@ public class UserController {
             log.info("Process file:{}", file.getOriginalFilename());
         }
         FileUtils.copyInputStreamToFile(file.getInputStream(), new File("E:\\", System.currentTimeMillis() + file.getOriginalFilename()));
-        return "succes";
+        return "success";
     }
 }  
