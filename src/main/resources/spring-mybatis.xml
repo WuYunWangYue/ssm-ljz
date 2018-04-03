@@ -55,6 +55,12 @@
         <property name="dataSource" ref="dataSource" />  
     </bean>
 
+    <bean id="PersonBean" class="com.ljz.model.Person">
+        <property name="userName" value="ljz" />
+        <property name="password" value="123456" />
+        <property name="age" value="29" />
+    </bean>
+
     <!--&lt;!&ndash; 配置基于注解的声明式事务 &ndash;&gt;-->
     <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
 </beans>
