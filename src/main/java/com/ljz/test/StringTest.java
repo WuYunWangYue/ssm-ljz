@@ -1,4 +1,4 @@
-package com.ljz.Test;
+package com.ljz.test;
 
 public class StringTest {
     public static void main(String[] args) {

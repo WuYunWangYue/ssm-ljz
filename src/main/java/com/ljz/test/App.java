@@ -1,4 +1,4 @@
-package com.ljz.Test;
+package com.ljz.test;
 
 import com.ljz.model.Person;
 import org.springframework.context.ApplicationContext;

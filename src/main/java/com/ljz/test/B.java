@@ -1,4 +1,4 @@
-package com.ljz.Test;
+package com.ljz.test;
 
 public class B {
     private static String str;

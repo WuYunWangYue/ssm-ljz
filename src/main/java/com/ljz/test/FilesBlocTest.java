@@ -1,4 +1,4 @@
-package com.ljz.Test;
+package com.ljz.test;
 
 public class FilesBlocTest {
     private static A a = new A();
