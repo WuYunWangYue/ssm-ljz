@@ -12,4 +12,11 @@ public class Person {
     private String password;
     private String age;
 
+    @Override
+    public String toString() {
+        return "Person [userName=" + userName +
+                ", password=" + password +
+                ", age=" + age + "]";
+    }
+
 }
