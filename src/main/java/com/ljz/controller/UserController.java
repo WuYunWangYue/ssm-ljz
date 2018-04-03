@@ -27,7 +27,6 @@ import com.ljz.service.IUserService;
 
 @Controller
 @RequestMapping("/user")
-// /user/**
 public class UserController {
     private static Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
