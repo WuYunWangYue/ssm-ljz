@@ -9,12 +9,17 @@ public class Main {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-mybatis.xml");
         ArithmeticCalculator arithmeticCalculator =
                 (ArithmeticCalculator) ctx.getBean("arithmeticCalculator");
+        System.out.println("========================================================");
         System.out.println(arithmeticCalculator.getClass());
+
         int result = arithmeticCalculator.add(3, 5);
         System.out.println("result: " + result);
 
         result = arithmeticCalculator.div(5, 0);
-        System.out.println("result: " + result);
-
+        try {
+            System.out.println("result2: " + result);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
