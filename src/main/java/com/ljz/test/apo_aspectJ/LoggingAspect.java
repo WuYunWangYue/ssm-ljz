@@ -1,6 +1,8 @@
 package com.ljz.test.apo_aspectJ;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,7 +32,8 @@ public class LoggingAspect {
     @Before("execution(* com.ljz.test.apo_aspectJ.*.*(..))")
     public void beforeMethod(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
-        System.out.println("【前置通知】the method 【" + methodName + "】 begins with " + Arrays.asList(jp.getArgs()));
+        Object[] objects = jp.getArgs();
+        System.out.println("【前置通知】the method 【" + methodName + "】 begins with " + Arrays.asList(objects));
     }
 
     /**
