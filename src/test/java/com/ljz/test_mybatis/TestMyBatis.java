@@ -1,4 +1,4 @@
-package com.ljz.testmybatis;
+package com.ljz.test_mybatis;
 
 import com.ljz.controller.UserController;
 import com.ljz.controller.vo.UserRequestVO;
