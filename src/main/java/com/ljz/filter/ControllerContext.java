@@ -28,7 +28,10 @@ public class ControllerContext {
         return getInstance(req, resq, servletContext, true);
     }
 
-    public static ControllerContext getInstance(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext, boolean newInstance) {
+    public static ControllerContext getInstance(HttpServletRequest request,
+                                                HttpServletResponse response,
+                                                ServletContext servletContext,
+                                                boolean newInstance) {
         ControllerContext context = ctx.get();
         if (context == null && newInstance) {
             context = new ControllerContext();
@@ -43,7 +46,10 @@ public class ControllerContext {
         ctx.remove();
     }
 
-    private static void initContext(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext, ControllerContext context) {
+    private static void initContext(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    ServletContext servletContext,
+                                    ControllerContext context) {
         context.ctxMap.put(CONTEXT_HTTP_REQUEST, request);
         context.ctxMap.put(CONTEXT_HTTP_RESPONSE, response);
         context.ctxMap.put(SERVLET_CONTEXT, servletContext);

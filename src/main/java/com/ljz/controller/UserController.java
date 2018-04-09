@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.ljz.common.BaseResponse;
 import com.ljz.controller.vo.UserRequestVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ljz.model.User;
 import com.ljz.service.IUserService;
 
-
+@Api(value = "UserController", description = "用户接口详情")
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -32,27 +36,31 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "/create")
+
+    @ApiOperation(value="创建新用户")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful — 请求已完成"),
+            @ApiResponse(code = 400, message = "请求中有语法问题，或不能满足请求"),
+            @ApiResponse(code = 401, message = "未授权客户机访问数据"),
+            @ApiResponse(code = 404, message = "服务器找不到给定的资源；文档不存在"),
+            @ApiResponse(code = 500, message = "服务器不能完成请求")}
+    )
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestBody UserRequestVO reqVO){
-        List<User> users = userService.getUserByUserName(reqVO.getUserName());
-        if(users.size() > 0) {
-            return "error";
-        }
         User user = new User();
         BeanUtils.copyProperties(reqVO, user);
         userService.create(user);
         return "success";
     }
 
-    // /user/test?id=1
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
         User user = new User();
-        user.setAge(11);
         user.setPassword("123");
         user.setUserName("ljz");
+        user.setAge(11);
         userService.create(user);
-        return "index";
+        return "success";
     }
 
     @RequestMapping(value = "/showUser", method = RequestMethod.GET)
@@ -87,7 +95,7 @@ public class UserController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public User getUserInfo(@PathVariable String id, Map<String, Object> model) {
+    public User getUserInfo(@PathVariable String id) {
         int userId = Integer.parseInt(id);
         System.out.println("userId:" + userId);
         User user = this.userService.getUserById(userId);
@@ -106,7 +114,7 @@ public class UserController {
     }
 
     //文件上传
-    @RequestMapping(value = "/upload")
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String showUploadPage() {
         return "user_admin/file";
     }
@@ -116,7 +124,8 @@ public class UserController {
         if (!file.isEmpty()) {
             log.info("Process file:{}", file.getOriginalFilename());
         }
-        FileUtils.copyInputStreamToFile(file.getInputStream(), new File("E:\\", System.currentTimeMillis() + file.getOriginalFilename()));
+        FileUtils.copyInputStreamToFile(file.getInputStream(),
+                new File("E:\\", System.currentTimeMillis() + file.getOriginalFilename()));
         return "success";
     }
 }  
