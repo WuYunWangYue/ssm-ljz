@@ -79,7 +79,7 @@
     </filter>
     <filter-mapping>
         <filter-name>controllerContext</filter-name>
-        <url-pattern>/main/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <!-- Spring MVC servlet -->
@@ -121,6 +121,7 @@
     </session-config>
 
     <!-- Demo -->
+
     <!-- 配置监听器 -->
     <!--    <listener>
             <listener-class>com.ljz.test.listener.ListenerTest</listener-class>
