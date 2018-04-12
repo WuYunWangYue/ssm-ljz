@@ -1,4 +1,4 @@
-package com.ljz.test.apo_aspectJ;
+package com.ljz.test.aop_aspectJ;
 
 public interface ArithmeticCalculator {
 

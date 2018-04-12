@@ -1,15 +1,11 @@
-package com.ljz.test.apo_aspectJ;
+package com.ljz.test.aop_aspectJ;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -17,8 +13,6 @@ import org.springframework.stereotype.Component;
 /**
  * 日志切面
  *
- * @author QianChaoChen 00002336<br>
- * @date 2017年3月3日 下午3:03:29
  */
 @Component
 @Aspect
@@ -29,7 +23,7 @@ public class LoggingAspect {
      *
      * @param jp
      */
-    @Before("execution(* com.ljz.test.apo_aspectJ.*.*(..))")
+    @Before("execution(* com.ljz.test.aop_aspectJ.*.*(..))")
     public void beforeMethod(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
         Object[] objects = jp.getArgs();
@@ -42,7 +36,7 @@ public class LoggingAspect {
      * @param jp
      * @param result
      */
-    @AfterReturning(value = "execution(* com.ljz.test.apo_aspectJ.*.*(..))", returning = "result")
+    @AfterReturning(value = "execution(* com.ljz.test.aop_aspectJ.*.*(..))", returning = "result")
     public void afterReturningMethod(JoinPoint jp, Object result) {
         String methodName = jp.getSignature().getName();
         System.out.println("【返回通知】the method 【" + methodName + "】 ends with 【" + result + "】");
@@ -53,7 +47,7 @@ public class LoggingAspect {
      *
      * @param jp
      */
-    @After("execution(* com.ljz.test.apo_aspectJ.*.*(..))")
+    @After("execution(* com.ljz.test.aop_aspectJ.*.*(..))")
     public void afterMethod(JoinPoint jp) {
         System.out.println("【后置通知】this is a afterMethod advice...");
     }
@@ -61,7 +55,7 @@ public class LoggingAspect {
     /**
      * 异常通知：目标方法发生异常的时候执行以下代码
      */
-    @AfterThrowing(value = "execution(* com.ljz.test.apo_aspectJ.*.*(..))", throwing = "e")
+    @AfterThrowing(value = "execution(* com.ljz.test.aop_aspectJ.*.*(..))", throwing = "e")
     public void afterThrowingMethod(JoinPoint jp, ArithmeticException e) {
         String methodName = jp.getSignature().getName();
         System.out.println("【异常通知】the method 【" + methodName + "】 occurs exception: " + e);
@@ -72,7 +66,7 @@ public class LoggingAspect {
      *
      * @return
      */
-/*    @Around(value = "execution(* com.ljz.test.apo_aspectJ.*.*(..))")
+/*    @Around(value = "execution(* com.ljz.test.aop_aspectJ.*.*(..))")
     public Object aroundMethod(ProceedingJoinPoint jp) {
         String methodName = jp.getSignature().getName();
         Object result = null;

@@ -1,5 +1,6 @@
 package com.ljz;
 
+import com.ljz.common.util.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import javax.annotation.Resource;
 public class RedisTest {
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Test
     public void Test01(){
@@ -30,6 +33,16 @@ public class RedisTest {
         //使用get(key)的方法获取到city对应的值
         String string = redisString.get("city");
         System.out.println(string);
+    }
+
+    @Test
+    public void Test02() {
+        redisUtil.set("name", "ljz");
+        redisUtil.set("age", "24");
+        redisUtil.set("address", "河北邯郸");
+
+        System.out.println(redisUtil.get("age"));
+
     }
 
 }

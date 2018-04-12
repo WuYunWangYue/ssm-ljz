@@ -40,9 +40,10 @@ public class TestMyBatis {
         UserRequestVO vo = new UserRequestVO();
         vo.setUserName("ljz-cs");
         vo.setPassword("123456");
-        vo.setAge(29);
+        vo.setAge(30);
         System.out.println("结果是: " + userController.create(vo));
-        System.out.println("结果是: " + userController.getUserInJson2("5"));
+        System.out.println("结果是: " + userController.getUserInfoByUserName(vo.getUserName()));
+
     }
 
 }

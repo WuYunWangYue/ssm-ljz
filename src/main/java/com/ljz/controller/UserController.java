@@ -53,6 +53,15 @@ public class UserController {
         return "success";
     }
 
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> getUserInfoByUserName(@RequestParam String userName) {
+        List<User> users = userService.getUserByUserName(userName);
+        if(users.size() != 0)
+            return users;
+        return null;
+    }
+
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
         User user = new User();

@@ -1,4 +1,4 @@
-package com.ljz.test.apo_aspectJ;
+package com.ljz.test.aop_aspectJ;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
