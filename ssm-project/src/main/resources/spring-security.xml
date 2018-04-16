@@ -10,7 +10,23 @@
     <!-- 登录页面不过滤 -->
     <!-- 静态资源,不用权限 -->
     <security:http pattern="/login.jsp" security="none"/>
+    <security:http pattern="/index.jsp" security="none"/>
     <security:http pattern="WEB_INF/jsp/**" security="none"/>
+
+    <!-- use-expressions:Spring 表达式语言配置访问控制 -->
+   <!-- <security:http auto-config="true" use-expressions="false">
+        &lt;!&ndash; 配置权限拦截，访问所有url，都需要用户登录，且拥有ROLE_USER权限 &ndash;&gt;
+        <security:intercept-url pattern="/**" access="ROLE_USER" />
+    </security:http>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            &lt;!&ndash; 配置默认用户，用户名：admin 密码：123456 拥有权限：ROLE_USER &ndash;&gt;
+            <security:user-service>
+                <security:user name="admin" password="123456" authorities="ROLE_USER" />
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>-->
 
     <!--   <http auto-config="true" use-expressions="true">
            <access-denied-handler error-page="/error.jsp"/>
