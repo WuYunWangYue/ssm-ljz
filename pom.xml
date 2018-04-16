@@ -3,12 +3,19 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ljz.ssm</groupId>
     <artifactId>ssm</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>maven01 Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>ssm-demo</module>
+        <module>ssm-project</module>
+    </modules>
+
+    <name>ssm-ljz</name>
+    <url>http://ssm.ljz.com</url>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- spring版本号 -->
         <spring.version>4.0.2.RELEASE</spring.version>
         <!-- mybatis版本号 -->
@@ -16,7 +23,6 @@
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.security.version>4.0.2.RELEASE</spring.security.version>
         <swagger.version>2.2.2</swagger.version>
     </properties>
@@ -47,7 +53,7 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
@@ -199,6 +205,7 @@
             <!--<artifactId>jackson-core-asl</artifactId>-->
             <!--<version>1.9.13</version>-->
         <!--</dependency>-->
+
         <!-- 上传组件包 -->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -294,6 +301,12 @@
                     <stopPort>9966</stopPort>
                 </configuration>
             </plugin>
+            <!-- 资源文件拷贝插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -302,9 +315,11 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
+            <!-- java编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.4-SNAPSHOT</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -313,7 +328,7 @@
         </plugins>
 
         <resources>
-            <!--编译之后包含xml,properties-->
+            <!-- 编译之后包含xml,properties -->
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>

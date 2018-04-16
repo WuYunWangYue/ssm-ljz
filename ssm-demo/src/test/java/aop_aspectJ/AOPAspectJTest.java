@@ -1,4 +1,4 @@
-package com.ljz.aop_aspectJ;
+package aop_aspectJ;
 
 import com.ljz.test.aop_aspectJ.ArithmeticCalculator;
 import org.junit.Test;
