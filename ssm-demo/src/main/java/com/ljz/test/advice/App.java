@@ -7,7 +7,7 @@ public class App {
 
     public static void main(String[] args) {
         ApplicationContext appContext =
-                new ClassPathXmlApplicationContext(new String[]{"spring-mybatis.xml"});
+                new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
         CustomerService customerService =
                 (CustomerService) appContext.getBean("customerService");
         System.out.println("====================================================================");

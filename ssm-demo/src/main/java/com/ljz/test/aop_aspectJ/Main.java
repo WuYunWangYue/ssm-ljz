@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-mybatis.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         ArithmeticCalculator arithmeticCalculator =
                 (ArithmeticCalculator) ctx.getBean("arithmeticCalculator");
         System.out.println("========================================================");

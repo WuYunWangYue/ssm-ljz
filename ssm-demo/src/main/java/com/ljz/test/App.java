@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
     	ApplicationContext context =
-    	  new ClassPathXmlApplicationContext(new String[] {"spring-mybatis.xml"});
+    	  new ClassPathXmlApplicationContext(new String[] {"applicationContext.xml"});
 
     	Person person = (Person)context.getBean("PersonBean");
 
