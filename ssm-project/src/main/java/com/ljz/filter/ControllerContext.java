@@ -7,12 +7,6 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Description:说明
- * @Author:xgchen
- * @Date:2016-01-15 10:09
- * @Version:V0.0.1
- */
 public class ControllerContext {
 
     private static final ThreadLocal<ControllerContext> ctx = new ThreadLocal<ControllerContext>();

@@ -4,11 +4,6 @@ import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 
-/**
- * @Author:xgchen
- * @Date:2015-02-25 18:03
- * @Version: V0.0.1
- */
 public class PropertyUtil {
 
     private static String separator = File.separator;

@@ -5,12 +5,6 @@ import org.apache.commons.lang.StringUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-/**
- * @Description:说明
- * @Author:xgchen
- * @Date:2016-01-15 9:42
- * @Version:V0.0.1
- */
 public class GlobalSetting extends HttpServlet {
 
     private static GlobalSetting instance;

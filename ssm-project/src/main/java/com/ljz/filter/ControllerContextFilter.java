@@ -12,12 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-/**
- * @Description:说明
- * @Author:xgchen
- * @Date:2016-01-15 9:55
- * @Version:V0.0.1
- */
 public class ControllerContextFilter implements Filter {
 
     private static final Logger log = LogManager.getLogger(ControllerContextFilter.class);
