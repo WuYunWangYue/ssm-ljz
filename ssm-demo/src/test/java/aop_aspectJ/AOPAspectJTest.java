@@ -22,7 +22,10 @@ public class AOPAspectJTest {
         int result = arithmeticCalculator.add(3, 5);
         System.out.println("result: " + result);
 
-        result = arithmeticCalculator.div(5, 0);
+        // 【异常通知】the method 【div】 occurs exception: java.lang.ArithmeticException: / by zero
+//        result = arithmeticCalculator.div(6, 0);
+
+        result = arithmeticCalculator.div(6, 3);
         try {
             System.out.println("result2: " + result);
         } catch (Exception e) {
