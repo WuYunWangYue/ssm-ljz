@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 @WebAppConfiguration
 public class RedisTest {
     @Autowired

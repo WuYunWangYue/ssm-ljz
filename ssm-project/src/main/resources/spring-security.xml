@@ -3,20 +3,27 @@
          xmlns:b="http://www.springframework.org/schema/beans"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/security
-       http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+       http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <!-- 登录页面不过滤 -->
-    <!-- 静态资源,不用权限 -->
-    <http pattern="/login.jsp" security="none"/>
-    <http pattern="/index.jsp" security="none"/>
-    <http pattern="WEB_INF/jsp/**" security="none"/>
+    <!-- 登录页面不过滤 静态资源,不用权限 -->
+    <!--<http pattern="/login.jsp" security="none"/>-->
+    <!--<http pattern="/index.jsp" security="none"/>-->
 
-    <!-- use-expressions:Spring 表达式语言配置访问控制 -->
-    <http auto-config="true" use-expressions="false">
+    <!-- SecurityConfig 等同于以下配置 begin -->
+    <http auto-config="true">
         <!-- 配置权限拦截，访问所有url，都需要用户登录，且拥有ROLE_USER权限 -->
-        <intercept-url pattern="/**" access="ROLE_USER"/>
+        <intercept-url pattern="/admin**" access="ROLE_USER"/>
+        <!--<intercept-url pattern="/dba**" access="ROLE_ADMIN,ROLE_DBA" />-->
+        <form-login
+                login-page="/login"
+                default-target-url="/welcome"
+                authentication-failure-url="/login?error"
+                username-parameter="username"
+                password-parameter="password"/>
+        <logout logout-success-url="/login?logout"/>
+        <csrf/>
     </http>
 
     <authentication-manager alias="authenticationManager">
@@ -24,25 +31,13 @@
             <!-- 配置默认用户，用户名：admin 密码：123456 拥有权限：ROLE_USER -->
             <user-service>
                 <user name="admin" password="123456" authorities="ROLE_USER"/>
+                <!--<user name="user" password="123456" authorities="ROLE_USER"/>-->
+                <!--<user name="dba" password="123456" authorities="ROLE_DBA" />-->
             </user-service>
         </authentication-provider>
     </authentication-manager>
-
-<!--    <http auto-config="true" use-expressions="true">
-        <access-denied-handler error-page="/error.jsp"/>
-        <intercept-url pattern="/main/common" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/main/admin" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/restApi/**" access="permitAll"/>
-        <csrf disabled="true"/>
-        <session-management>
-            <concurrency-control max-sessions="1" error-if-maximum-exceeded="false"/>
-        </session-management>
-        <form-login login-page="/login.jsp"/>
-        <logout logout-url="/user/logout" logout-success-url="/user/login"/>
-        <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
-    </http>-->
+    <!-- end -->
 
     <!--  对密码进行MD5编码-->
     <!--<b:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>-->
-
 </b:beans>

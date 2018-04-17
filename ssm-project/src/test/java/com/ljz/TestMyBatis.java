@@ -17,7 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
-@ContextConfiguration(locations = {"classpath*:spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 @WebAppConfiguration
 public class TestMyBatis {
     private static Logger logger = Logger.getLogger(TestMyBatis.class);
@@ -43,7 +43,6 @@ public class TestMyBatis {
         vo.setAge(30);
         System.out.println("结果是: " + userController.create(vo));
         System.out.println("结果是: " + userController.getUserInfoByUserName(vo.getUserName()));
-
     }
 
 }

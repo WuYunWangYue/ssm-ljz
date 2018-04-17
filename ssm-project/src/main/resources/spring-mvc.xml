@@ -11,11 +11,16 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.ljz.controller">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    <context:component-scan base-package="com.ljz.controller"/>
 
-    <!-- 以上已做了该配置要做到事情,所以移除 -->
+    <!-- 定义跳转的文件的前后缀 ，视图模式配置 VIEW 解析 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 以上 component-scan 已做了该配置要做到事情,所以移除 -->
     <!--<context:annotation-config/>-->
 
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
@@ -85,14 +90,6 @@
         </property>
     </bean>-->
 
-    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->
-    <!-- VIEW 解析 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
     <!--全局异常捕捉 -->
     <bean id="exceptionResolver" class="com.ljz.resolver.MyExceptionResolver"/>
 
@@ -108,7 +105,5 @@
         <!-- 启用是为了推迟文件解析，以便捕获文件大小异常 -->
         <property name="resolveLazily" value="true"/>
     </bean>
-
-
 
 </beans>

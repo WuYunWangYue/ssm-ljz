@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 @WebAppConfiguration
 public class EhcacheTest {
     @Autowired
