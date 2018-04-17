@@ -1,4 +1,4 @@
-package com.ljz.filter;
+package com.ljz.common.util;
 
 import java.io.*;
 import java.net.URL;

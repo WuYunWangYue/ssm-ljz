@@ -18,21 +18,16 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
-    <!-- 在servlet里面可以通过 getServletContext().getInitParameter(“context/param”)得到 -->
-    <!-- 加载 Spring和mybatis的配置文件 及 Spring security的配置文件 -->
+    <!-- 在servlet里面可以通过 getServletContext().getInitParameter(“context/param”)
+    得到加载 Spring 和 mybatis 的配置文件 及 Spring security 的配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:spring-mybatis.xml
             classpath:spring-security.xml
+            classpath:applicationContext.xml
         </param-value>
     </context-param>
-
-    <!--    &lt;!&ndash; 加载 Spring security的配置文件 &ndash;&gt;
-        <context-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-security.xml</param-value>
-        </context-param>-->
 
     <!-- Spring 容器启动监听器 -->
     <listener>

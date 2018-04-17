@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
     <!-- 登录页面不过滤 -->
     <!-- 静态资源,不用权限 -->
-    <security:http pattern="/login.jsp" security="none"/>
-    <security:http pattern="/index.jsp" security="none"/>
-    <security:http pattern="WEB_INF/jsp/**" security="none"/>
+    <http pattern="/login.jsp" security="none"/>
+    <http pattern="/index.jsp" security="none"/>
+    <http pattern="WEB_INF/jsp/**" security="none"/>
 
     <!-- use-expressions:Spring 表达式语言配置访问控制 -->
-   <!-- <security:http auto-config="true" use-expressions="false">
-        &lt;!&ndash; 配置权限拦截，访问所有url，都需要用户登录，且拥有ROLE_USER权限 &ndash;&gt;
-        <security:intercept-url pattern="/**" access="ROLE_USER" />
-    </security:http>
+    <http auto-config="true" use-expressions="false">
+        <!-- 配置权限拦截，访问所有url，都需要用户登录，且拥有ROLE_USER权限 -->
+        <intercept-url pattern="/**" access="ROLE_USER"/>
+    </http>
 
-    <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider>
-            &lt;!&ndash; 配置默认用户，用户名：admin 密码：123456 拥有权限：ROLE_USER &ndash;&gt;
-            <security:user-service>
-                <security:user name="admin" password="123456" authorities="ROLE_USER" />
-            </security:user-service>
-        </security:authentication-provider>
-    </security:authentication-manager>-->
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <!-- 配置默认用户，用户名：admin 密码：123456 拥有权限：ROLE_USER -->
+            <user-service>
+                <user name="admin" password="123456" authorities="ROLE_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 
-    <!--   <http auto-config="true" use-expressions="true">
-           <access-denied-handler error-page="/error.jsp"/>
-           &lt;!&ndash;<intercept-url pattern="/main/common" access="hasRole('ROLE_USER')" />
-           <intercept-url pattern="/main/admin" access="hasRole('ROLE_ADMIN')"/>
-           <intercept-url pattern="/restApi/**" access="permitAll"/>
-           <csrf disabled="true" />&ndash;&gt;
-
-           <session-management>
-               <concurrency-control max-sessions="1" error-if-maximum-exceeded="false"/>
-           </session-management>
-           <form-login login-page="/login.jsp"/>
-           &lt;!&ndash;<logout logout-url="/user/logout" logout-success-url="/user/login"/>&ndash;&gt;
-
-           <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
-       </http>-->
+<!--    <http auto-config="true" use-expressions="true">
+        <access-denied-handler error-page="/error.jsp"/>
+        <intercept-url pattern="/main/common" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/main/admin" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/restApi/**" access="permitAll"/>
+        <csrf disabled="true"/>
+        <session-management>
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="false"/>
+        </session-management>
+        <form-login login-page="/login.jsp"/>
+        <logout logout-url="/user/logout" logout-success-url="/user/login"/>
+        <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+    </http>-->
 
     <!--  对密码进行MD5编码-->
     <!--<b:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>-->
 
-</beans>
+</b:beans>

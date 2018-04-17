@@ -1,5 +1,6 @@
 package com.ljz.filter;
 
+import com.ljz.common.util.PropertyUtil;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.ServletException;
