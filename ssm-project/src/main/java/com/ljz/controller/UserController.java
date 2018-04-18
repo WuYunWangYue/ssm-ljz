@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
-import com.ljz.common.BaseResponse;
 import com.ljz.controller.vo.UserRequestVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,11 +18,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,7 +47,10 @@ public class UserController {
             @ApiResponse(code = 500, message = "服务器不能完成请求")}
     )
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestBody UserRequestVO reqVO){
+    public String create(@Valid @RequestBody UserRequestVO reqVO, BindingResult result){
+        if(result.hasErrors()){
+            return "error";
+        }
         User user = new User();
         BeanUtils.copyProperties(reqVO, user);
         userService.create(user);
@@ -60,6 +63,7 @@ public class UserController {
         List<User> users = userService.getUserByUserName(userName);
         if(users.size() != 0)
             return users;
+        //TODO 待定
         return null;
     }
 

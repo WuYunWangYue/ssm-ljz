@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 import com.ljz.dao.IUserDao;
 import com.ljz.model.User;
 import com.ljz.service.IUserService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service("userService")
+@Transactional
 public class UserServiceImpl implements IUserService {
     @Autowired
     private IUserDao userDao;

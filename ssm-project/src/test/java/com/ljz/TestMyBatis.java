@@ -5,6 +5,7 @@ import com.ljz.controller.vo.UserRequestVO;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,6 +16,9 @@ import com.ljz.model.User;
 import com.ljz.service.IUserService;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
@@ -25,6 +29,8 @@ public class TestMyBatis {
     private IUserService userService;
     @Autowired
     private UserController userController;
+    @Mock
+    private BindingResult result;
 
     @Test
     public void test1() {
@@ -37,11 +43,12 @@ public class TestMyBatis {
     @Transactional
     @Rollback
     public void test2() {
+        Model model = new ExtendedModelMap();
         UserRequestVO vo = new UserRequestVO();
         vo.setUserName("ljz-cs");
-        vo.setPassword("123456");
-        vo.setAge(30);
-        System.out.println("结果是: " + userController.create(vo));
+        vo.setPassword("12345");
+        vo.setAge(130);
+        System.out.println("结果是: " + userController.create(vo, result));
         System.out.println("结果是: " + userController.getUserInfoByUserName(vo.getUserName()));
     }
 
