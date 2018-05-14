@@ -165,7 +165,7 @@
             <version>${slf4j.version}</version>
         </dependency>
         <!-- log end -->
-        <!-- 映入JSON -->
+        <!-- 引入JSON 解决spring @ResponseBody 406 问题 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
